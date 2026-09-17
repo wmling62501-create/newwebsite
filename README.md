@@ -1,2 +1,10 @@
-# newwebsite
-0917Demo
+# 行銷數據指揮中心
+
+亮黃色與黑色高對比風格的行銷數據後台示範網站，包含：
+
+- Meta Ads、Google Ads、GA4 成效總覽
+- 跨渠道活動管理
+- LINE 通知規則與訊息預覽
+- API 串接準備流程
+
+直接開啟 `index.html` 即可預覽。

@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0a0a0a">
+  <title>行銷數據指揮中心</title>
+  <meta name="description" content="整合 Meta、Google Ads、GA4 與 LINE 通知的行銷後台示範系統">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%230a0a0a'/%3E%3Cpath d='M15 42V28h8v14zm13 0V19h8v23zm13 0V12h8v30z' fill='%23FFD400'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span class="logo">M</span><div><strong>Marketing Hub</strong><small>數據指揮中心</small></div></div>
+    <nav aria-label="主要導覽">
+      <button class="nav active" data-page="dashboard"><span>◫</span>總覽儀表板</button>
+      <button class="nav" data-page="channels"><span>⌁</span>渠道成效</button>
+      <button class="nav" data-page="campaigns"><span>◎</span>活動管理</button>
+      <button class="nav" data-page="line"><span>✦</span>LINE 通知</button>
+      <button class="nav" data-page="connections"><span>⛓</span>串接設定</button>
+    </nav>
+    <div class="sidebar-card"><span class="demo-dot"></span><div><strong>示範模式</strong><small>目前使用模擬資料</small></div></div>
+    <div class="profile"><span>ML</span><div><strong>May Ling</strong><small>系統管理員</small></div><b>•••</b></div>
+  </aside>
+
+  <main>
+    <header>
+      <button class="menu" aria-label="開啟選單">☰</button>
+      <div><p class="eyebrow">MARKETING OPERATIONS</p><h1 id="pageTitle">行銷成效總覽</h1></div>
+      <div class="header-actions">
+        <label class="range"><span>日期</span><select id="dateRange"><option>近 30 天</option><option>近 7 天</option><option>本季</option></select></label>
+        <button class="icon-button" aria-label="通知">♢<i>3</i></button>
+      </div>
+    </header>
+
+    <div class="demo-banner"><span>DEMO</span><p>目前顯示示範資料，最後更新：<strong>2026/09/17 09:30</strong></p><button data-page-jump="connections">開始安排串接 →</button></div>
+
+    <section class="page active" id="dashboard">
+      <div class="metrics">
+        <article class="metric"><div><span>廣告花費</span><b class="meta">M</b></div><strong>NT$ 128,460</strong><p class="up">↑ 12.4% <em>較上期</em></p></article>
+        <article class="metric"><div><span>轉換價值</span><b class="google">G</b></div><strong>NT$ 492,800</strong><p class="up">↑ 18.7% <em>較上期</em></p></article>
+        <article class="metric"><div><span>整體 ROAS</span><b class="ga4">◈</b></div><strong>3.84 <small>x</small></strong><p class="up">↑ 0.21 <em>較上期</em></p></article>
+        <article class="metric"><div><span>獲客成本 CPA</span><b class="line-mark">L</b></div><strong>NT$ 386</strong><p class="down">↓ 8.6% <em>成本改善</em></p></article>
+      </div>
+
+      <div class="grid-main">
+        <article class="panel chart-panel">
+          <div class="panel-head"><div><span>成效趨勢</span><h2>花費與轉換價值</h2></div><div class="legend"><i class="cyan"></i>廣告花費 <i class="green"></i>轉換價值</div></div>
+          <svg class="trend" viewBox="0 0 760 270" role="img" aria-label="近30天廣告花費與轉換價值趨勢圖">
+            <defs><linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#31d6a7" stop-opacity=".3"/><stop offset="1" stop-color="#31d6a7" stop-opacity="0"/></linearGradient></defs>
+            <g class="gridlines"><path d="M45 25H740M45 80H740M45 135H740M45 190H740M45 245H740"/></g>
+            <path class="area" d="M45 218C90 210 110 172 155 184S220 138 268 156S330 100 378 125S438 72 490 94S560 45 608 66S690 35 740 30V245H45Z"/>
+            <path class="green-line" d="M45 218C90 210 110 172 155 184S220 138 268 156S330 100 378 125S438 72 490 94S560 45 608 66S690 35 740 30"/>
+            <path class="cyan-line" d="M45 226C90 218 113 208 155 212S215 184 268 198S332 168 378 181S442 154 490 164S553 129 608 147S685 110 740 119"/>
+            <g class="axis"><text x="45" y="265">8/19</text><text x="180" y="265">8/25</text><text x="320" y="265">8/31</text><text x="465" y="265">9/06</text><text x="610" y="265">9/12</text><text x="712" y="265">9/17</text></g>
+          </svg>
+        </article>
+        <article class="panel channel-card">
+          <div class="panel-head"><div><span>渠道效率</span><h2>預算配置與 ROAS</h2></div><button class="ghost" data-page-jump="channels">查看全部</button></div>
+          <div class="channel"><div class="channel-title"><b class="meta">M</b><div><strong>Meta Ads</strong><small>花費 NT$ 68,420</small></div><em>ROAS 4.12</em></div><div class="bar"><i style="width:68%"></i></div></div>
+          <div class="channel"><div class="channel-title"><b class="google">G</b><div><strong>Google Ads</strong><small>花費 NT$ 48,760</small></div><em>ROAS 3.66</em></div><div class="bar"><i style="width:57%"></i></div></div>
+          <div class="channel"><div class="channel-title"><b class="ga4">◈</b><div><strong>自然流量</strong><small>轉換價值 NT$ 52,400</small></div><em>CVR 3.8%</em></div><div class="bar"><i style="width:43%"></i></div></div>
+        </article>
+      </div>
+
+      <div class="grid-bottom">
+        <article class="panel campaigns-mini"><div class="panel-head"><div><span>即時觀察</span><h2>活動表現</h2></div><button class="ghost" data-page-jump="campaigns">管理活動</button></div>
+          <table><thead><tr><th>行銷活動</th><th>渠道</th><th>花費</th><th>轉換</th><th>ROAS</th><th>狀態</th></tr></thead><tbody>
+            <tr><td><strong>秋季新品｜轉換</strong><small>2026/09/01–09/30</small></td><td>Meta</td><td>$36,800</td><td>142</td><td class="good">4.62</td><td><span class="status running">投放中</span></td></tr>
+            <tr><td><strong>品牌關鍵字｜搜尋</strong><small>長期活動</small></td><td>Google</td><td>$28,420</td><td>96</td><td class="good">4.08</td><td><span class="status running">投放中</span></td></tr>
+            <tr><td><strong>會員回購｜再行銷</strong><small>2026/09/10–09/24</small></td><td>Meta</td><td>$18,260</td><td>61</td><td>3.21</td><td><span class="status watch">需觀察</span></td></tr>
+          </tbody></table>
+        </article>
+        <article class="panel line-summary"><div class="panel-head"><div><span>LINE 通知中心</span><h2>今日訊息</h2></div><b class="line-mark">L</b></div>
+          <div class="line-stat"><strong>6</strong><span>已發送</span><strong>2</strong><span>待處理</span></div>
+          <div class="notice"><i class="warn">!</i><div><strong>CPA 超過警戒值</strong><small>會員回購活動 · 09:12</small></div></div>
+          <div class="notice"><i>✓</i><div><strong>每日摘要已發送</strong><small>LINE 管理群組 · 09:00</small></div></div>
+          <button class="primary full" data-page-jump="line">設定通知規則</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="page" id="channels">
+      <div class="section-title"><div><p>CHANNEL PERFORMANCE</p><h2>渠道成效分析</h2><span>比較各平台投入、轉換與效率</span></div><button class="primary" data-toast="報表已匯出（示範）">匯出報表</button></div>
+      <div class="comparison">
+        <article class="source-card"><b class="meta">M</b><h3>Meta Ads</h3><span>示範資料</span><dl><div><dt>花費</dt><dd>NT$ 68,420</dd></div><div><dt>轉換</dt><dd>176</dd></div><div><dt>CPA</dt><dd>NT$ 389</dd></div><div><dt>ROAS</dt><dd class="good">4.12</dd></div></dl></article>
+        <article class="source-card"><b class="google">G</b><h3>Google Ads</h3><span>示範資料</span><dl><div><dt>花費</dt><dd>NT$ 48,760</dd></div><div><dt>轉換</dt><dd>121</dd></div><div><dt>CPA</dt><dd>NT$ 403</dd></div><div><dt>ROAS</dt><dd class="good">3.66</dd></div></dl></article>
+        <article class="source-card"><b class="ga4">◈</b><h3>Google Analytics 4</h3><span>示範資料</span><dl><div><dt>工作階段</dt><dd>42,680</dd></div><div><dt>新使用者</dt><dd>31,240</dd></div><div><dt>轉換率</dt><dd>3.8%</dd></div><div><dt>營收</dt><dd>NT$ 492,800</dd></div></dl></article>
+      </div>
+      <article class="panel"><div class="panel-head"><div><span>渠道漏斗</span><h2>曝光至轉換</h2></div></div><div class="funnel"><div style="--w:100%"><b>2,840,000</b><span>曝光</span></div><div style="--w:78%"><b>86,420</b><span>點擊</span></div><div style="--w:55%"><b>12,680</b><span>到站互動</span></div><div style="--w:35%"><b>333</b><span>轉換</span></div></div></article>
+    </section>
+
+    <section class="page" id="campaigns">
+      <div class="section-title"><div><p>CAMPAIGN CONTROL</p><h2>行銷活動管理</h2><span>集中監控跨平台活動</span></div><button class="primary" data-toast="已建立活動草稿（示範）">＋ 新增活動</button></div>
+      <article class="panel campaign-list"><div class="filters"><input id="searchCampaign" placeholder="搜尋活動名稱"><select><option>所有渠道</option><option>Meta</option><option>Google</option></select><select><option>所有狀態</option><option>投放中</option><option>需觀察</option></select></div>
+      <div class="campaign-row header"><span>活動名稱</span><span>渠道</span><span>預算進度</span><span>轉換</span><span>ROAS</span><span>狀態</span></div>
+      <div class="campaign-row" data-name="秋季新品"><span><strong>秋季新品｜轉換</strong><small>9/01–9/30</small></span><span>Meta</span><span><i class="progress"><b style="width:73%"></b></i><small>73%</small></span><span>142</span><span class="good">4.62</span><span class="status running">投放中</span></div>
+      <div class="campaign-row" data-name="品牌關鍵字"><span><strong>品牌關鍵字｜搜尋</strong><small>長期活動</small></span><span>Google</span><span><i class="progress"><b style="width:61%"></b></i><small>61%</small></span><span>96</span><span class="good">4.08</span><span class="status running">投放中</span></div>
+      <div class="campaign-row" data-name="會員回購"><span><strong>會員回購｜再行銷</strong><small>9/10–9/24</small></span><span>Meta</span><span><i class="progress"><b style="width:84%"></b></i><small>84%</small></span><span>61</span><span>3.21</span><span class="status watch">需觀察</span></div>
+      <div class="campaign-row" data-name="中秋禮盒"><span><strong>中秋禮盒｜購物</strong><small>8/15–9/15</small></span><span>Google</span><span><i class="progress"><b style="width:100%"></b></i><small>100%</small></span><span>34</span><span>2.88</span><span class="status ended">已結束</span></div>
+      </article>
+    </section>
+
+    <section class="page" id="line">
+      <div class="section-title"><div><p>LINE NOTIFICATION</p><h2>通知規則與測試</h2><span>先用示範訊息驗證流程，再進行正式串接</span></div><button class="primary" id="testLine">傳送測試通知</button></div>
+      <div class="line-layout">
+        <article class="panel rules"><div class="panel-head"><div><span>AUTOMATION RULES</span><h2>通知規則</h2></div><button class="ghost" data-toast="已新增空白規則（示範）">＋ 新增</button></div>
+          <label class="rule"><div><i class="warn">!</i><span><strong>CPA 異常警示</strong><small>當任一活動 CPA 高於 NT$ 500</small></span></div><input type="checkbox" checked></label>
+          <label class="rule"><div><i>↗</i><span><strong>ROAS 達標通知</strong><small>ROAS 大於 4.0 時立即通知</small></span></div><input type="checkbox" checked></label>
+          <label class="rule"><div><i>☼</i><span><strong>每日成效摘要</strong><small>每天上午 09:00 發送</small></span></div><input type="checkbox" checked></label>
+          <label class="rule"><div><i>₿</i><span><strong>預算用罄提醒</strong><small>預算使用達 90% 時通知</small></span></div><input type="checkbox"></label>
+        </article>
+        <article class="phone-wrap"><div class="phone"><div class="phone-head"><span>‹</span><strong>行銷成效通知</strong><span>≡</span></div><div class="chat"><small>今天 09:00</small><div class="bubble"><strong>📊 每日行銷摘要</strong><p>廣告花費：NT$ 4,280<br>轉換價值：NT$ 18,640<br>整體 ROAS：4.36</p><hr><p>最佳活動：秋季新品｜轉換<br>ROAS 4.62 ↑</p><em>查看完整儀表板 →</em></div><div class="sent">已發送 · 示範預覽</div></div></div></article>
+      </div>
+    </section>
+
+    <section class="page" id="connections">
+      <div class="section-title"><div><p>DATA CONNECTIONS</p><h2>串接設定</h2><span>依照步驟逐一授權，示範資料會在正式資料同步後自動替換</span></div><div class="security">🔒 憑證加密保存</div></div>
+      <div class="steps"><div class="done"><b>1</b><span>確認資料需求</span></div><i></i><div class="current"><b>2</b><span>平台授權</span></div><i></i><div><b>3</b><span>欄位對應</span></div><i></i><div><b>4</b><span>排程上線</span></div></div>
+      <div class="connect-grid">
+        <article class="connect-card"><div><b class="meta">M</b><span><h3>Meta Ads</h3><small>廣告帳號、活動、素材與成效</small></span></div><em class="not-connected">尚未串接</em><ul><li>需要 Meta Business 管理員權限</li><li>建議讀取近 13 個月資料</li></ul><button class="connect-btn" data-source="Meta Ads">安排串接</button></article>
+        <article class="connect-card"><div><b class="google">G</b><span><h3>Google Ads</h3><small>廣告活動、關鍵字與轉換</small></span></div><em class="not-connected">尚未串接</em><ul><li>需要 Google Ads 標準或管理員權限</li><li>確認主要轉換動作</li></ul><button class="connect-btn" data-source="Google Ads">安排串接</button></article>
+        <article class="connect-card"><div><b class="ga4">◈</b><span><h3>Google Analytics 4</h3><small>流量、事件、受眾與營收</small></span></div><em class="not-connected">尚未串接</em><ul><li>需要 GA4 資源檢視者以上權限</li><li>確認事件與 UTM 命名規則</li></ul><button class="connect-btn" data-source="Google Analytics 4">安排串接</button></article>
+        <article class="connect-card"><div><b class="line-mark">L</b><span><h3>LINE Messaging API</h3><small>警示、摘要與管理群組通知</small></span></div><em class="not-connected">尚未串接</em><ul><li>需要 LINE Developers Provider</li><li>準備 Channel access token</li></ul><button class="connect-btn" data-source="LINE Messaging API">安排串接</button></article>
+      </div>
+      <article class="panel roadmap"><div><span><small>建議順序</small><strong>GA4 → Google Ads → Meta Ads → LINE</strong></span><p>先建立網站轉換基準，再補齊付費流量與即時通知，可降低欄位重工。</p></div><button class="primary" data-source="完整串接計畫">建立串接計畫</button></article>
+    </section>
+  </main>
+
+  <dialog id="connectDialog"><form method="dialog"><button class="dialog-close" aria-label="關閉">×</button><span class="modal-kicker">INTEGRATION PLAN</span><h2 id="modalTitle">安排串接</h2><p>此示範版不會要求您輸入任何密鑰。請先選擇下一步，我們再依序完成設定。</p><div class="choice-list"><label><input type="radio" name="mode" checked><span><strong>先看串接清單</strong><small>確認帳號權限、必要欄位與資料期間</small></span></label><label><input type="radio" name="mode"><span><strong>安排正式授權</strong><small>下一階段再啟用 OAuth 與 API 憑證設定</small></span></label></div><div class="dialog-actions"><button value="cancel" class="secondary">稍後再說</button><button value="confirm" class="primary" id="confirmPlan">加入串接清單</button></div></form></dialog>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script src="./app.js"></script>
+</body>
+</html>
